@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{% trans %}Home site{% endtrans %}{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
@@ -14,6 +14,54 @@
         {% endblock %}
     </head>
     <body>
+        {% block navigation %}
+            {# Here will be menu generated with admin panel #}
+        {% endblock %}
         {% block body %}{% endblock %}
+
+        {% block footer %}
+        <footer class="footer">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <h3 class="footer__header">
+                        {% trans %}About us{% endtrans %}
+                    </h3>
+                    <ul>
+                        <li><a href="">GPDR</a></li>
+                        <li><a href="">Cookie policy</a></li>
+                        <li><a href="">Terms and conditions</a></li>
+                        <li><a href="">About site</a></li>
+                        <li><a href="">Contact with developer</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <h3 class="footer__header">
+                        {% trans %}Follow us{% endtrans %}
+                    </h3>
+                    <ul>
+                        <li><a href="">Facebook</a></li>
+                        <li><a href="">Twitter</a></li>
+                        <li><a href="">Instagram</a></li>
+                        <li><a href="">Discord</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <h3 class="footer__header">
+                        {% trans %}Add to newsletter{% endtrans %}
+                    </h3>
+                    <!-- It will be change when newsletter will appear -->
+                    <form id="newsletter_form" action="/newsletter" method="post">
+                        <div class="form-group">
+                            <label for="email">{% trans %}E-mail address{% endtrans %}</label>
+                            <input type="text" name="email" id="email" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">{% trans %}Save{% endtrans %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </footer>
+        {% endblock %}
     </body>
 </html>
