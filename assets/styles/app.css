@@ -1,0 +1,61 @@
+body {
+    background-color: rgb(44,44,44);
+}
+
+a {
+    transition: 300ms all;
+}
+
+/** NAVBAR **/
+header .navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+header .navbar .nav-item {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+header .navbar .nav-item.active {
+    border-bottom: 2px solid rgba(255,0,0, 0.4);
+    background: #555;
+}
+
+header .navbar .nav-item.active a {
+    color: #DDD;
+}
+
+
+/** CARD **/
+.card {
+    background: rgb(110, 110, 110);
+    border-top: 2px solid rgba(255, 0, 0, 0.4);
+    color: #DDD;
+    border-radius: 0px;
+}
+
+/** FOOTER **/
+.footer {
+    background: rgb(70, 70, 70);
+    border-top: 2px solid rgba(255, 0, 0, 0.4);
+    color: darkgrey;
+    padding: 15px;
+}
+
+.footer .footer__header {
+    text-align: center;
+}
+
+.footer ul {
+    list-style: none;
+}
+
+.footer ul > li > a {
+    color: darkred;
+    text-decoration: none;
+}
+
+.footer ul > li > a:hover {
+    filter: brightness(110%);
+}
