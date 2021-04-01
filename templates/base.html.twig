@@ -5,6 +5,8 @@
         <title>{% block title %}{% trans %}Home site{% endtrans %}{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -17,8 +19,30 @@
         {% block navigation %}
             {# Here will be menu generated with admin panel #}
             <header>
-                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <a class="navbar-brand" href="#">Navbar</a>
+                <div class="header-top">
+                    <div class="row">
+                        <div class="col-xl-4 header-top__item">
+                            <img src="https://via.placeholder.com/120x80?text=Scary+site" alt="Logo" width="120" height="80">
+                        </div>
+                        <div class="col-xl-4 header-top__item">
+                            <form id="search-form">
+                                <div class="row">
+                                    <div class="col-md-9 ">
+                                        <input type="text" name="search" input="search" class="form-control" />
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="submit" class="btn btn-primary">{% trans %}Search{% endtrans %}</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xl-4 header-top__item">
+                            <a href="" class="btn btn-primary">Login</a>
+                            <a href="" class="btn btn-secondary">Register</a>
+                        </div>
+                    </div>
+                </div>
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="main-navigation">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -39,6 +63,7 @@
                         </ul>
                     </div>
                 </nav>
+                <div class="fixed-navbar" id="fixed-navbar"></div>
             </header>
         {% endblock %}
         {% block body %}{% endblock %}

@@ -1,5 +1,10 @@
+* {
+    font-family: 'Syne Mono', monospace;
+}
+
 body {
     background-color: rgb(44,44,44);
+    overflow-x: hidden;
 }
 
 a {
@@ -7,6 +12,21 @@ a {
 }
 
 /** NAVBAR **/
+.header-top {
+    background: #212529;
+    border-bottom: 1px solid #777;
+    color: #DDD;
+    text-align: center;
+}
+
+.header-top__item {
+    line-height: 115px;
+}
+
+.header-top__item .form-control {
+    display: inline;
+}
+
 header .navbar {
     padding-top: 0;
     padding-bottom: 0;
@@ -24,6 +44,18 @@ header .navbar .nav-item.active {
 
 header .navbar .nav-item.active a {
     color: #DDD;
+}
+
+nav #navbarNav {
+    justify-content: center;
+}
+
+.fixed-navbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 9999;
 }
 
 
