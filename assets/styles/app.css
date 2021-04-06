@@ -67,6 +67,32 @@ nav #navbarNav {
     border-radius: 0px;
 }
 
+/** PROMO CARD **/
+.promo-card {
+    padding: 0;
+}
+
+.promo {
+    overflow: hidden;
+    position: relative;
+}
+
+.promo .promo-image img {
+    width: 100%;
+    transition: all 300ms;
+}
+
+.promo:hover .promo-image img {
+    transform: scale(1.2);
+}
+
+.promo .promo-content {
+    position: absolute;
+    bottom: 0;
+    color: black;
+    padding: 25px;
+}
+
 /** FOOTER **/
 .footer {
     background: rgb(70, 70, 70);
