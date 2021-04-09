@@ -8,7 +8,13 @@ body {
 }
 
 a {
-    transition: 300ms all;
+    color: #FA6444;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #FA6455;
+    filter: brightness(120%);
 }
 
 /** BUTTONS **/
@@ -25,6 +31,13 @@ a {
 .btn.btn-primary:hover {
     background: #AD0003;
     border: 1px solid #7c0200;
+}
+
+/** FORMS **/
+.form-control {
+    border-radius: 0px;
+    background: #B0B9BD;
+    border: 1px solid #8c0002;
 }
 
 /** NAVBAR **/
@@ -49,8 +62,14 @@ header .navbar {
 }
 
 header .navbar .nav-item {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+header .navbar .nav-item .nav-link {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 50px;
 }
 
 header .navbar .nav-item.active {
@@ -123,13 +142,4 @@ nav #navbarNav {
 
 .footer ul {
     list-style: none;
-}
-
-.footer ul > li > a {
-    color: #FA6444;
-    text-decoration: none;
-}
-
-.footer ul > li > a:hover {
-    filter: brightness(110%);
 }

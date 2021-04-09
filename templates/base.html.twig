@@ -100,12 +100,14 @@
                     </h3>
                     <!-- It will be change when newsletter will appear -->
                     <form id="newsletter_form" action="/newsletter" method="post">
-                        <div class="form-group">
-                            <label for="email">{% trans %}E-mail address{% endtrans %}</label>
-                            <input type="text" name="email" id="email" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+                        <div class="row">
+                            <div class="col-md-8 form-group" style="padding-right: 0; margin-right: 0;">
+                                <label for="email mb-2">{% trans %}E-mail address{% endtrans %}</label>
+                                <input type="text" name="email" id="email" class="form-control" />
+                            </div>
+                            <div class="col-md-4 form-group pt-4">
+                                <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+                            </div>
                         </div>
                     </form>
                 </div>
