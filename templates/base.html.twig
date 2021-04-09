@@ -37,8 +37,12 @@
                             </form> #}
                         </div>
                         <div class="col-xl-4 header-top__item">
-                            <a href="" class="btn btn-primary">Login</a>
-                            <a href="" class="btn btn-secondary">Register</a>
+                            {% if app.user %}
+                                <p>Witaj {{ app.user.username }} | <a href="{{ path('app_logout') }}">Log out</a></p>
+                            {% else %}
+                                <a href="{{ path('app_login') }}" class="btn btn-primary">Login</a>
+                                <a href="{{ path('app_register') }}" class="btn btn-secondary">Register</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
