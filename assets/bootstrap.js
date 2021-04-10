@@ -6,3 +6,9 @@ export const app = startStimulusApp(require.context(
     true,
     /\.(j|t)sx?$/
 ));
+
+export const admin = startStimulusApp(require.context(
+    '@symfony/stimulus-bridge/lazy-controller-loader!./controllers',
+    true,
+    /\.(j|t)sx?$/
+))
