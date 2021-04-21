@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Posts;
+use ContainerDrOzxp9\getDebug_ArgumentResolver_RequestAttributeService;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,25 @@ class PostsRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Posts::class);
+    }
+
+    public function findAllNewPosts(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.published_at', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAllHomeNextPosts(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.published_at', 'DESC')
+            ->setMaxResults(3)
+            ->setFirstResult(3)
+            ->getQuery()
+            ->getResult();
     }
 
     // /**

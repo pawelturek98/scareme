@@ -5,14 +5,14 @@
 {% block body %}
 <div class="container mt-5 mb-5">
     <div class="row">
-        {% for i in 0..10 %}
+        {% for post in posts %}
         <div class="col-md-3 col-xl-3 col-xs-6 mb-4">
-            <a href="/articles/article">
+            <a href="{{ path('article_item', {slug: post.urlKey}) }}">
                 <div class="card">
-                    <img class="card-img-top" src="https://via.placeholder.com/160x90" alt="Card image cap">
+                    <img class="card-img-top" src="{{ asset('uploads/posts/images/' ~ post.image) }}" alt="{{ post.title }}" width="300" height="200">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.shortDescription }}</p>
                     </div>
                 </div>
             </a>

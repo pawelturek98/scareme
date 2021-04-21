@@ -18,78 +18,91 @@
     </head>
     <body>
         {% block navigation %}
-    <!-- Vertical navbar -->
+        <!-- Vertical navbar -->
         <div class="vertical-nav bg-white" id="sidebar">
             <div class="py-4 px-3 mb-4 bg-light">
-                <div class="media d-flex align-items-center"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556074849/avatar-1_tcnd60.png" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
-                <div class="media-body">
-                    <h4 class="m-0">Jason Doe</h4>
-                    <p class="font-weight-light text-muted mb-0">Web developer</p>
-                </div>
+                <div class="media d-flex align-items-center">
+                    <div class="media-body">
+                        <h4 class="m-0">Scary site</h4>
+                    </div>
                 </div>
             </div>
 
-            <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
+            <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Moderation</p>
 
             <ul class="nav flex-column bg-white mb-0">
                 <li class="nav-item">
-                <a href="#" class="nav-link text-dark font-italic bg-light">
+                <a href="{{ path('admin') }}" class="nav-link text-dark font-italic bg-light">
                             <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-                            Home
+                            Dashboard
                         </a>
                 </li>
                 <li class="nav-item">
-                <a href="#" class="nav-link text-dark font-italic">
-                            <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
-                            About
+                <a href="{{ path('admin_posts_index') }}" class="nav-link text-dark font-italic">
+                            <i class="fa fa-pencil-square-o mr-3 text-primary fa-fw"></i>
+                            Posts
                         </a>
                 </li>
                 <li class="nav-item">
-                <a href="#" class="nav-link text-dark font-italic">
-                            <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                            Services
+                <a href="{{ path('admin_categories_index') }}" class="nav-link text-dark font-italic">
+                            <i class="fa fa-list mr-3 text-primary fa-fw"></i>
+                            Categories
                         </a>
                 </li>
                 <li class="nav-item">
-                <a href="#" class="nav-link text-dark font-italic">
-                            <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-                            Gallery
+                <a href="{{ path('admin_tags_index') }}" class="nav-link text-dark font-italic">
+                            <i class="fa fa-tags mr-3 text-primary fa-fw"></i>
+                            Tags
+                        </a>
+                </li>
+                <li class="nav-item">
+                <a href="{{ path('admin_comments_index') }}" class="nav-link text-dark font-italic">
+                            <i class="fa fa-comments  mr-3 text-primary fa-fw"></i>
+                            Comments
                         </a>
                 </li>
             </ul>
 
-            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Charts</p>
+            <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Site administration</p>
 
             <ul class="nav flex-column bg-white mb-0">
                 <li class="nav-item">
-                <a href="#" class="nav-link text-dark font-italic">
-                            <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
-                            Area charts
+                <a href="{{ path('admin_users_index') }}" class="nav-link text-dark font-italic">
+                            <i class="fa fa-users mr-3 text-primary fa-fw"></i>
+                            Users
                         </a>
                 </li>
                 <li class="nav-item">
-                <a href="#" class="nav-link text-dark font-italic">
-                            <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
-                            Bar charts
+                <a href="{{ path('admin_roles_index') }}" class="nav-link text-dark font-italic">
+                            <i class="fa fa-asterisk mr-3 text-primary fa-fw"></i>
+                            Roles
                         </a>
                 </li>
                 <li class="nav-item">
-                <a href="#" class="nav-link text-dark font-italic">
-                            <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
-                            Pie charts
+                <a href="{{ path('admin_languages_index') }}" class="nav-link text-dark font-italic">
+                            <i class="fa fa-language mr-3 text-primary fa-fw"></i>
+                            Languages
                         </a>
                 </li>
                 <li class="nav-item">
-                <a href="#" class="nav-link text-dark font-italic">
-                            <i class="fa fa-line-chart mr-3 text-primary fa-fw"></i>
-                            Line charts
+                <a href="{{ path('admin_contact_index') }}" class="nav-link text-dark font-italic">
+                            <i class="fa fa-address-book mr-3 text-primary fa-fw"></i>
+                            Contact
+                        </a>
+                </li>
+                <li class="nav-item">
+                <a href="{{ path('admin_settings_index') }}" class="nav-link text-dark font-italic">
+                            <i class="fa fa fa-cogs mr-3 text-primary fa-fw"></i>
+                            Settings
                         </a>
                 </li>
             </ul>
         </div>
         <!-- End vertical navbar -->
         {% endblock %}
-        {% block body %}{% endblock %}
+        <div class="page-content p-5">
+            {% block body %}{% endblock %}
+        </div>
 
         {% block footer %}
        

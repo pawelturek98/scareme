@@ -1,0 +1,56 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Posts index{% endblock %}
+
+{% block body %}
+    <h1>Posts index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Short_description</th>
+                <th>Meta_name</th>
+                <th>Meta_keywords</th>
+                <th>Meta_description</th>
+                <th>Url_key</th>
+                <th>Created_at</th>
+                <th>Published_at</th>
+                <th>Published</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td><img src="{{ asset('uploads/posts/images/' ~ post.image) }}" alt="" height="128"></td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.description }}</td>
+                <td>{{ post.shortDescription }}</td>
+                <td>{{ post.metaName }}</td>
+                <td>{{ post.metaKeywords }}</td>
+                <td>{{ post.metaDescription }}</td>
+                <td>{{ post.urlKey }}</td>
+                <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ post.publishedAt ? post.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ post.published ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('posts_show', {'id': post.id}) }}">show</a>
+                    <a href="{{ path('posts_edit', {'id': post.id}) }}">edit</a>
+                    {{ include('admin/posts/_delete_form.html.twig', {post: post}) }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('posts_new') }}">Create new</a>
+{% endblock %}

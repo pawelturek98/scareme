@@ -16,12 +16,12 @@ class TagsPosts
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Posts::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $post;
+//
+//    /**
+//     * @ORM\OneToOne(targetEntity=Posts::class, cascade={"persist", "remove"})
+//     * @ORM\JoinColumn(nullable=false)
+//     */
+//    private $post;
 
     /**
      * @ORM\OneToOne(targetEntity=Tags::class, cascade={"persist", "remove"})
@@ -34,17 +34,17 @@ class TagsPosts
         return $this->id;
     }
 
-    public function getPost(): ?Posts
-    {
-        return $this->post;
-    }
-
-    public function setPost(Posts $post): self
-    {
-        $this->post = $post;
-
-        return $this;
-    }
+//    public function getPost(): ?Posts
+//    {
+//        return $this->post;
+//    }
+//
+//    public function setPost(Posts $post): self
+//    {
+//        $this->post = $post;
+//
+//        return $this;
+//    }
 
     public function getTag(): ?Tags
     {

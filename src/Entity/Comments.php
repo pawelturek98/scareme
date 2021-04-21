@@ -21,12 +21,12 @@ class Comments
      * @ORM\Column(type="integer")
      */
     private $id_parent;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Posts::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $post;
+//
+//    /**
+//     * @ORM\ManyToOne(targetEntity=Posts::class)
+//     * @ORM\JoinColumn(nullable=false)
+//     */
+//    private $post;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -80,17 +80,14 @@ class Comments
         return $this;
     }
 
-    public function getPost(): ?Posts
-    {
-        return $this->idpost;
-    }
-
-    public function setPost(?Posts $post): self
-    {
-        $this->post = $post;
-
-        return $this;
-    }
+//
+//
+//    public function setPost(?Posts $post): self
+//    {
+//        $this->post = $post;
+//
+//        return $this;
+//    }
 
     public function getTitle(): ?string
     {
