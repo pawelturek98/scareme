@@ -29,4 +29,22 @@ class ArticlesController extends AbstractController
             'post' => $post
         ]);
     }
+
+    /**
+     * @Route("/articles-widget", name="articles_widget")
+     */
+    public function articlesWidget(PostsRepository $postsRepository): Response
+    {
+        $latestPosts = $postsRepository->findFromToPosts(5);
+        $bestPost = $postsRepository->findBestPost();
+
+        $response = $this->render('particles/_sidebar.html.twig', [
+            'latestPosts' => $latestPosts,
+            'bestPost' => $bestPost
+        ]);
+        $response->setPublic(true);
+        $response->setMaxAge(600);
+
+        return $response;
+    }
 }

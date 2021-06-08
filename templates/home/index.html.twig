@@ -88,7 +88,9 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-4">
-            {% include 'particles/_sidebar.html.twig' %}
+            {{ render_esi(controller(
+                'App\\Controller\\ArticlesController::articlesWidget'
+            )) }}
         </div>
     </div>
 </div>

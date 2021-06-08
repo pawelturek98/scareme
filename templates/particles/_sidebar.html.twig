@@ -3,12 +3,52 @@
         <div class="card">    
             <div class="card-body">
                 <h4 class="card-title">
-                    Widget
+                    {% trans %}Latest posts{% endtrans %}
                 </h4>
                 <p class="card-text">
-                    Test
+                    <ul>
+                    {% for post in latestPosts  %}
+                        <li><a href="{{ path('article_item', {slug: post.urlKey}) }}" class="">{{ post.title }}</a> </li>
+                    {% endfor %}
+                    </ul>
                 </p>
             </div>
         </div>
     </div>
 </div>
+<div class="row mt-5">
+    <div class="col-xl-12 col-md-12">
+        <div class="card">    
+            <div class="card-body">
+                <h4 class="card-title">
+                    {% trans %}Most popular post{% endtrans %}
+                </h4>
+                <p class="card-text">
+                    {% for post in bestPost %}
+                    <a href="{{ path('article_item', {slug: post.urlKey}) }}">
+                        <div class="card">
+                            <img class="card-img-top" src="{{ asset('uploads/posts/images/' ~ post.image) }}" alt="{{ post.title }}" width="200" height="100">
+                        </div>
+                    </a>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{# <div class="row mt-5">
+    <div class="col-xl-12 col-md-12">
+        <div class="card">    
+            <div class="card-body">
+                <h4 class="card-title">
+                    {% trans %}Most active users{% endtrans %}
+                </h4>
+                <p class="card-text">
+                    <ul>
+                        <li><a href="" class=""></a> </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+</div> #}

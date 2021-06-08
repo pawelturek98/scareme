@@ -84,6 +84,11 @@ class Posts
      */
     private $published;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isBest;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -241,6 +246,18 @@ class Posts
     public function setPublished(bool $published): self
     {
         $this->published = $published;
+
+        return $this;
+    }
+
+    public function getIsBest(): ?bool
+    {
+        return $this->isBest;
+    }
+
+    public function setIsBest(bool $isBest): self
+    {
+        $this->isBest = $isBest;
 
         return $this;
     }

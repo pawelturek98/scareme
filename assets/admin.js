@@ -10,18 +10,7 @@
 import './styles/bootstrap.css'
 import './styles/admin.css';
 
+import '@ckeditor/ckeditor5-build-classic';
 
 // start the Stimulus application
 import './bootstrap';
-
-window.onload = () => {
-    document.querySelector('#sidebarCollapse').addEventListener('onclick', () => {
-        let sidebar_content = document.querySelector('#sidebar, #content');
-
-        if( sidebar_content.classList.contains('active') ) {
-            sidebar_content.classList.remove('active');
-        } else {
-            sidebar_content.classList.add('active');
-        }
-    });
-}

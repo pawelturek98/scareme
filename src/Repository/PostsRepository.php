@@ -20,21 +20,23 @@ class PostsRepository extends ServiceEntityRepository
         parent::__construct($registry, Posts::class);
     }
 
-    public function findAllNewPosts(): array
+    public function findFromToPosts(int $num = 3, int $start = 0): array
     {
         return $this->createQueryBuilder('p')
             ->orderBy('p.published_at', 'DESC')
-            ->setMaxResults(3)
+            ->setMaxResults($num)
+            ->setFirstResult($start)
             ->getQuery()
             ->getResult();
     }
 
-    public function findAllHomeNextPosts(): array
+    public function findBestPost(): array
     {
         return $this->createQueryBuilder('p')
-            ->orderBy('p.published_at', 'DESC')
-            ->setMaxResults(3)
-            ->setFirstResult(3)
+            ->andWhere('p.isBest = :val')
+            ->setParameter('val', true)
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(1)
             ->getQuery()
             ->getResult();
     }
