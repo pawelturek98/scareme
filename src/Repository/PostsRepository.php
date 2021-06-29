@@ -30,13 +30,13 @@ class PostsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findBestPost(): array
+    public function findBestPost(int $max = 1): array
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.isBest = :val')
             ->setParameter('val', true)
             ->orderBy('p.id', 'ASC')
-            ->setMaxResults(1)
+            ->setMaxResults($max)
             ->getQuery()
             ->getResult();
     }

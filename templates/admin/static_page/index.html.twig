@@ -1,0 +1,53 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}StaticPage index{% endblock %}
+
+{% block body %}
+    <h1>StaticPage index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Robots</th>
+                <th>Seo_title</th>
+                <th>Seo_description</th>
+                <th>Seo_url</th>
+                <th>Layout</th>
+                <th>Published</th>
+                <th>Created_at</th>
+                <th>Published_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for static_page in static_pages %}
+            <tr>
+                <td>{{ static_page.id }}</td>
+                <td>{{ static_page.title }}</td>
+                <td>{{ static_page.content }}</td>
+                <td>{{ static_page.robots ? 'Yes' : 'No' }}</td>
+                <td>{{ static_page.seoTitle }}</td>
+                <td>{{ static_page.seoDescription }}</td>
+                <td>{{ static_page.seoUrl }}</td>
+                <td>{{ static_page.layout }}</td>
+                <td>{{ static_page.published ? 'Yes' : 'No' }}</td>
+                <td>{{ static_page.createdAt ? static_page.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ static_page.publishedAt ? static_page.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('static_page_show', {'id': static_page.id}) }}">show</a>
+                    <a href="{{ path('static_page_edit', {'id': static_page.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('static_page_new') }}">Create new</a>
+{% endblock %}

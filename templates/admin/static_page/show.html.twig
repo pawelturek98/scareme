@@ -1,0 +1,62 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}StaticPage{% endblock %}
+
+{% block body %}
+    <h1>StaticPage</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ static_page.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ static_page.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ static_page.content }}</td>
+            </tr>
+            <tr>
+                <th>Robots</th>
+                <td>{{ static_page.robots ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Seo_title</th>
+                <td>{{ static_page.seoTitle }}</td>
+            </tr>
+            <tr>
+                <th>Seo_description</th>
+                <td>{{ static_page.seoDescription }}</td>
+            </tr>
+            <tr>
+                <th>Seo_url</th>
+                <td>{{ static_page.seoUrl }}</td>
+            </tr>
+            <tr>
+                <th>Layout</th>
+                <td>{{ static_page.layout }}</td>
+            </tr>
+            <tr>
+                <th>Published</th>
+                <td>{{ static_page.published ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ static_page.createdAt ? static_page.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Published_at</th>
+                <td>{{ static_page.publishedAt ? static_page.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_static_page_index') }}">back to list</a>
+
+    <a href="{{ path('static_page_edit', {'id': static_page.id}) }}">edit</a>
+
+    {{ include('admin/static_page/_delete_form.html.twig') }}
+{% endblock %}

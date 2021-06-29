@@ -19,4 +19,32 @@ class HomeController extends AbstractController
             'others'  => $postsRepository->findFromToPosts(3,3)
         ]);
     }
+
+    /**
+     * @Route("/page/{slug}", name="static_pages")
+     */
+    public function page(string $slug): Response
+    {
+        /*
+         * Layout będzie pobierany z Entity stron statycznych 
+         */
+        $layout = "1-column";
+
+        /*
+         * Dodatkowymi parametrami dla stron statycznych powinny być:
+         *  - Nazwa strony
+         *  - Kontent strony
+         *  - Roboty (follow / no-follow)
+         *  - Przyjazny tytuł
+         *  - Opis strony
+         *  - Url slug
+         *  - Opublikowany / nieopublikowany
+         *  - Datę utworzenia
+         *  - Datę publikacji
+         *  - Autora 
+         */
+        return $this->render("home/static-pages/$layout.html.twig", [
+        
+        ]);
+    }
 }
