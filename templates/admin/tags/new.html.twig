@@ -3,9 +3,19 @@
 {% block title %}New Tags{% endblock %}
 
 {% block body %}
-    <h1>Create new Tags</h1>
-
-    {{ include('admin/tags/_form.html.twig') }}
-
-    <a href="{{ path('admin_tags_index') }}">back to list</a>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 mb-3">
+            <a href="{{ path('admin_tags_index') }}" class="btn btn-dark">back to list</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Create new Tag</h1>
+                    {{ include('admin/tags/_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -14,5 +14,9 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "github:ckeditor/ckeditor5-build-classic",
+        "yarn": "^1.22.11"
     }
 }
