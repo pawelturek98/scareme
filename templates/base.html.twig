@@ -5,6 +5,8 @@
         <title>{% block title %}{% trans %}Home site{% endtrans %}{% endblock %}</title>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
+        <meta name="description" content="{% block seo_description %}Page description{% endblock %}">
+        <meta name="keywords" content="{% block seo_keywords %}Site keywords{% endblock %}">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -36,10 +38,10 @@
                         </div>
                         <div class="col-xl-4 header-top__item">
                             {% if app.user %}
-                                <p>Witaj {{ app.user.username }} | <a href="{{ path('app_logout') }}">Log out</a></p>
+                                <p>Witaj {{ app.user.username }} | <a href="{{ path('app_logout') }}">{% trans %}Log out{% endtrans %}</a></p>
                             {% else %}
-                                <a href="{{ path('app_login') }}" class="btn btn-primary">Login</a>
-                                <a href="{{ path('app_register') }}" class="btn btn-secondary">Register</a>
+                                <a href="{{ path('app_login') }}" class="btn btn-primary">{% trans %}Login{% endtrans %}</a>
+                                <a href="{{ path('app_register') }}" class="btn btn-secondary">{% trans %}Register{% endtrans %}</a>
                             {% endif %}
                         </div>
                     </div>
@@ -51,10 +53,10 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                         <li class="nav-item {% if app.request.attributes.get('_route') == 'app_home' %} active {% endif %}">
-                            <a class="nav-link" href="/">Home</a>
+                            <a class="nav-link" href="/">{% trans %}Home{% endtrans %}</a>
                         </li>
                         <li class="nav-item {% if app.request.attributes.get('_route') == 'articles' or app.request.attributes.get('_route') == 'article' %} active {% endif %}">
-                            <a class="nav-link" href="/articles">Articles</a>
+                            <a class="nav-link" href="/articles">{% trans %}Articles{% endtrans %}</a>
                         </li>
                         </ul>
                     </div>
@@ -72,11 +74,11 @@
                         {% trans %}About us{% endtrans %}
                     </h3>
                     <ul>
-                        <li><a href="/page/gpdr">GPDR</a></li>
-                        <li><a href="/page/cookie-policy">Cookie policy</a></li>
-                        <li><a href="/page/terms-and-conditions">Terms and conditions</a></li>
-                        <li><a href="/page/about-site">About site</a></li>
-                        <li><a href="/contact">Contact with developer</a></li>
+                        <li><a href="/page/gpdr">{% trans %}GPDR{% endtrans %}</a></li>
+                        <li><a href="/page/cookie-policy">{% trans %}Cookie policy{% endtrans %}</a></li>
+                        <li><a href="/page/terms-and-conditions">{% trans %}Terms and conditions{% endtrans %}</a></li>
+                        <li><a href="/page/about-site">{% trans %}About site{% endtrans %}</a></li>
+                        <li><a href="/contact">{% trans %}Contact with developer{% endtrans %}</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
@@ -94,18 +96,9 @@
                     <h3 class="footer__header">
                         {% trans %}Add to newsletter{% endtrans %}
                     </h3>
-                    <!-- It will be change when newsletter will appear -->
-                    <form id="newsletter_form" action="/newsletter" method="post">
-                        <div class="row">
-                            <div class="col-md-8 form-group" style="padding-right: 0; margin-right: 0;">
-                                <label for="email mb-2">{% trans %}E-mail address{% endtrans %}</label>
-                                <input type="text" name="email" id="email" class="form-control" />
-                            </div>
-                            <div class="col-md-4 form-group pt-4">
-                                <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
-                            </div>
-                        </div>
-                    </form>
+                    {{ render_esi(controller(
+                        'App\\Controller\\HomeController::newsletter'
+                    )) }}
                 </div>
             </div>
             <div class="row">

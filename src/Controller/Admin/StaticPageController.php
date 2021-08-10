@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
 /**
- * @Route("/static/page")
+ * @Route("/admin/static/page")
  */
 class StaticPageController extends AbstractController
 {
@@ -44,6 +44,12 @@ class StaticPageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            $staticPage->setCreatedAt(new \DateTime('now'));
+            if($form->get('published')) {
+                $staticPage->setPublishedAt(new \DateTime('now'));
+            }
+
             $entityManager->persist($staticPage);
             $entityManager->flush();
 

@@ -19,6 +19,19 @@ class StaticPageRepository extends ServiceEntityRepository
         parent::__construct($registry, StaticPage::class);
     }
 
+    /**
+     * @param string $slug
+     */
+    public function findPage(string $slug)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.seo_url = :val')
+            ->setParameter('val', $slug)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return StaticPage[] Returns an array of StaticPage objects
     //  */

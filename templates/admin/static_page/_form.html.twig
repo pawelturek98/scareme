@@ -3,4 +3,8 @@
     <div class="form-group" style="text-align: right;">
         <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
     </div>
+    <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('static_page[content]');
+    </script>
 {{ form_end(form) }}
