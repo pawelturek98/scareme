@@ -10,7 +10,5 @@
 import './styles/bootstrap.css'
 import './styles/admin.css';
 
-import '@ckeditor/ckeditor5-build-classic';
-
 // start the Stimulus application
 import './bootstrap';
