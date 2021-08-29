@@ -29,7 +29,7 @@ class PostsType extends AbstractType
                     'class' => 'form-control mb-3'
                 ]
             ])
-            ->add('short_description', TextType::class, [
+            ->add('short_description', TextareaType::class, [
                 'attr' => [
                     'class' => 'form-control mb-3'
                 ]

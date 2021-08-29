@@ -16,6 +16,8 @@ import './bootstrap';
 
 
 window.onload = (e) => {
+
+    /*  FIXED NAVIGATION  */
     let menu_item = document.getElementById('main-navigation');
     let menu_item_clone = menu_item.cloneNode(true);
     let fixed_menu = document.getElementById('fixed-navbar');

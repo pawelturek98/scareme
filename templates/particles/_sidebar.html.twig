@@ -27,7 +27,7 @@
                     {% for post in bestPost %}
                     <a href="{{ path('article_item', {slug: post.urlKey}) }}">
                         <div class="card">
-                            <img class="card-img-top" src="{{ asset('uploads/posts/images/' ~ post.image) }}" alt="{{ post.title }}" width="200" height="100">
+                            <img class="card-img-top" src="{{ asset('uploads/posts/images/' ~ post.image) }}" alt="{{ post.title }}" width="200">
                         </div>
                     </a>
                     {% endfor %}

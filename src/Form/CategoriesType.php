@@ -3,17 +3,24 @@
 namespace App\Form;
 
 use App\Entity\Categories;
+use App\Repository\CategoriesRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CategoriesType extends AbstractType
 {
+    private $_categoriesRepository;
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id_parent', TextType::class, [
+            ->add('id_parent', ChoiceType::class, [
+                'choices' =>[
+                    0 => 'test'
+                ],
                 'attr' => [
                     'class' => 'form-control mb-3'
                 ]

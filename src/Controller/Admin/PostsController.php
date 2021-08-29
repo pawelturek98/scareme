@@ -59,6 +59,7 @@ class PostsController extends AbstractController
             }
 
             $post->setAuthor($this->_security->getUser());
+            $post->setIsBest(true);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
