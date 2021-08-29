@@ -39,6 +39,39 @@ window.onload = (e) => {
         }
     }
 
+    document.getElementsByClassName('vote').forEach(function(item, index) {
+        item.addEventListener('click', function(e) {
+            let data = `type=${item.dataset.type}&post_id=${item.dataset.post}`;
+            console.log("Type: " + item.dataset.type);
+            console.log("Post ID" + item.dataset.post);
+            fetch("/article/rating", {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow',
+                referrerPolicy: 'no-referrer',
+                body: data
+            })
+                .then(response => {
+                    if(!response.ok) {
+                        throw Error(response.message);
+                    }
+
+                    return response.json()
+                })
+                .then(data => {
+                    item.parentNode.querySelector(".count").textContent = item.dataset.type === "up" ? data.votes.up : data.votes.down;
+                })
+                .catch(function (error) {
+                    alert("Już zagłosowałeś !")
+                })
+        });
+    });
+
     document.getElementById('newsletter_form').addEventListener('submit', function(e) {
         e.preventDefault();
         e.stopPropagation();

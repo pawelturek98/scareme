@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PostsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -88,6 +90,16 @@ class Posts
      * @ORM\Column(type="boolean")
      */
     private $isBest;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Ratings::class, mappedBy="post_id")
+     */
+    private $ratings;
+
+    public function __construct()
+    {
+        $this->ratings = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -260,5 +272,61 @@ class Posts
         $this->isBest = $isBest;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Ratings[]
+     */
+    public function getRatings(): Collection
+    {
+        return $this->ratings;
+    }
+
+    /**
+     * @return int
+     */
+    public function getUpVotesCount(): int
+    {
+        return $this->getVotesCount('up');
+    }
+
+    /**
+     * @return int
+     */
+    public function getDownVotesCount(): int
+    {
+        return $this->getVotesCount('down');
+    }
+
+    public function addRating(Ratings $rating): self
+    {
+        if (!$this->ratings->contains($rating)) {
+            $this->ratings[] = $rating;
+            $rating->setPostId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRating(Ratings $rating): self
+    {
+        if ($this->ratings->removeElement($rating)) {
+            // set the owning side to null (unless already changed)
+            if ($rating->setPostId() === $this) {
+                $rating->setPostId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    private function getVotesCount(string $type): int
+    {
+        $votes = 0;
+        foreach($this->ratings as $rating) {
+            if($rating->getType() == $type) $votes++;
+        }
+
+        return $votes;
     }
 }

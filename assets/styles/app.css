@@ -34,6 +34,55 @@ a:hover {
     border: 1px solid #7c0200;
 }
 
+.share-and-like-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.dislike-button, .like-button {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+    border-radius: 20px;
+    width: 95px;
+}
+
+.icon, .count {
+    text-align: center;
+}
+
+.count {
+    font-size: 20px;
+    padding: 5px 14px;
+    z-index: 10;
+    border-radius: 0 0 20px 20px;
+}
+
+.icon {
+    font-size: 20px;
+    padding: 8px 10px 0 10px;
+    color: whitesmoke;
+    transition: 400ms all;
+    cursor: pointer;
+    border-radius: 20px 20px 0 0;
+}
+
+.dislike-button {
+    border: 1px solid #7c0200;
+}
+
+.dislike-button .count, .dislike-button .icon:hover {
+    background: #7c0200;
+}
+
+.like-button {
+    border: 1px solid #0f5132;
+}
+
+.like-button .count, .like-button .icon:hover {
+    background: #0f5132;
+}
+
 /** FORMS **/
 .form-control {
     border-radius: 0px;

@@ -18,10 +18,25 @@
                     <p class="card-text mt-2">
                         {{ post.description | raw }}
                     </p>
+                    <div class="mt-2 share-and-like-buttons">
+                        <div class="share-on-facebook"></div>
+                        <div class="share-on-twitter"></div>
+                        <div class="dislike-button">
+                            <div class="icon vote" data-type="down" data-post="{{ post.id }}">
+                                <i class="far fa-thumbs-down"></i>
+                            </div>
+                            <div class="count">{{ post.downVotesCount }}</div>
+                        </div>
+                        <div class="like-button">
+                            <div class="icon vote" data-type="up" data-post="{{ post.id }}">
+                                <i class="far fa-thumbs-up"></i>
+                            </div>
+                            <div class="count">{{ post.upVotesCount }}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="disqus_thread" class="mt-5 mb-3"></div>
-
         </div>
         <div class="col-xl-3 col-md-4">
             {{ render_esi(controller(
