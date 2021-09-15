@@ -34,6 +34,33 @@
     margin: 0;
 }
 
+.quick-access {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.quick-access__item {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.quick-access__item a {
+    background: cadetblue;
+    display: block;
+    line-height: 37px;
+    padding: 0 10px;
+    color: whitesmoke;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 300ms;
+}
+
+.quick-access__item a:hover {
+    filter: brightness(110%);
+    border-radius: 0;
+}
+
 @media (max-width: 768px) {
     #sidebar {
         margin-left: -17rem;
