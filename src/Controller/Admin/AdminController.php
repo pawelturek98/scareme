@@ -2,7 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Repository\VisitorsStatisticsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -26,5 +28,13 @@ class AdminController extends AbstractController
         return $this->render('admin/index.html.twig', [
             'controller_name' => "Statystyki administratora"
         ]);
+    }
+
+    /**
+     * @Route("/admin/stats-ajax", name="admin_stats_ajax")
+     */
+    public function statsAjax(VisitorsStatisticsRepository $visitorsStatisticsRepository): JsonResponse
+    {
+        return new JsonResponse($visitorsStatisticsRepository->getStatistics());
     }
 }

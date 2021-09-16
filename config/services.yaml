@@ -33,3 +33,10 @@ services:
     App\Service\FileUploader:
         arguments:
             $targetDirectory: '%posts_image_directory%'
+
+    App\EventListener\ResponseListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.response }
+
+    App\Service\VisitorStatistics:
+        arguments:
