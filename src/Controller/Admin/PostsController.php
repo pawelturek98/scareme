@@ -47,6 +47,7 @@ class PostsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $imageFile = $form->get('imageFile')->getData();
             if($imageFile) {
                 $imageFileName = $fileUploader->upload($imageFile);
@@ -60,6 +61,7 @@ class PostsController extends AbstractController
 
             $post->setAuthor($this->_security->getUser());
             $post->setIsBest(true);
+            $post->generateUrlKey($form->get('title')->getData());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
@@ -87,12 +89,23 @@ class PostsController extends AbstractController
     /**
      * @Route("/{id}/edit", name="posts_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Posts $post): Response
+    public function edit(Request $request, Posts $post, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(PostsType::class, $post);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('imageFile')->getData();
+            if($imageFile) {
+                $imageFileName = $fileUploader->upload($imageFile);
+                $post->setImage($imageFileName);
+            }
+
+            $post->setCreatedAt(new \DateTime('now'));
+            if($form->get('published')) {
+                $post->setPublishedAt(new \DateTime('now'));
+            }
+            $post->generateUrlKey($post->getTitle());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_posts_index');

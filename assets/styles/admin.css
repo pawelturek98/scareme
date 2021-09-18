@@ -109,3 +109,7 @@ body {
 .text-gray {
     color: #aaa;
 }
+
+.text-right {
+    text-align: right;
+}

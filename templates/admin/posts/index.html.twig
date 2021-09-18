@@ -7,24 +7,17 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="card-body">
-                    <h1>Posts index</h1>
-
+                    <h1>Posts list</h1>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Image</th>
                                 <th>Title</th>
-                                <th>Description</th>
-                                <th>Short_description</th>
-                                <th>Meta_name</th>
-                                <th>Meta_keywords</th>
-                                <th>Meta_description</th>
-                                <th>Url_key</th>
-                                <th>Created_at</th>
-                                <th>Published_at</th>
+                                <th>Url</th>
+                                <th>Created at</th>
                                 <th>Published</th>
-                                <th>actions</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,19 +26,14 @@
                                 <td>{{ post.id }}</td>
                                 <td><img src="{{ asset('uploads/posts/images/' ~ post.image) }}" alt="" height="64" width="64"></td>
                                 <td>{{ post.title }}</td>
-                                <td>{{ post.description }}</td>
-                                <td>{{ post.shortDescription }}</td>
-                                <td>{{ post.metaName }}</td>
-                                <td>{{ post.metaKeywords }}</td>
-                                <td>{{ post.metaDescription }}</td>
                                 <td>{{ post.urlKey }}</td>
                                 <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                                <td>{{ post.publishedAt ? post.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
                                 <td>{{ post.published ? 'Yes' : 'No' }}</td>
                                 <td>
-                                    <a href="{{ path('posts_show', {'id': post.id}) }}">show</a>
-                                    <a href="{{ path('posts_edit', {'id': post.id}) }}">edit</a>
-                                    {{ include('admin/posts/_delete_form.html.twig', {post: post}) }}
+                                    <div style="display: flex;">
+                                        <a href="{{ path('posts_edit', {'id': post.id}) }}" class="btn btn-primary" style="margin-right: 10px">Edit</a>
+                                        {{ include('admin/posts/_delete_form.html.twig', {post: post}) }}
+                                    </div>
                                 </td>
                             </tr>
                         {% else %}
@@ -55,12 +43,11 @@
                         {% endfor %}
                         </tbody>
                     </table>
-
-                    <a href="{{ path('posts_new') }}">Create new</a>
-
+                    <div class="text-right">
+                        <a href="{{ path('posts_new') }}" class="btn btn-primary">Create new</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    div.row>div.col-md-12.col-sm-12.col-xs-12>div.card>div.card-body>h1
 {% endblock %}

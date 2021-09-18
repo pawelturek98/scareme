@@ -64,21 +64,22 @@ class PostsType extends AbstractType
                     'class' => 'form-control mb-3'
                 ]
             ])
-            ->add('meta_description', TextType::class, [
+            ->add('meta_description', TextareaType::class, [
                 'attr' => [
                     'class' => 'form-control mb-3'
                 ]
             ])
             ->add('url_key', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control mb-3'
+                    'class' => 'form-control mb-3',
+                    'disabled' => 'disabled'
                 ]
             ])
             ->add('published', CheckboxType::class, [
                 'attr' => [
                     'class' => 'mb-3'
                 ]
-            ])
+            ])->setRequired(false)
             ->add('category', EntityType::class, [
                 'class' => Categories::class,
                 'choice_label' => 'name',

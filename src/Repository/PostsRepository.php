@@ -23,6 +23,7 @@ class PostsRepository extends ServiceEntityRepository
     public function findFromToPosts(int $num = 3, int $start = 0): array
     {
         return $this->createQueryBuilder('p')
+            ->where('p.published=1')
             ->orderBy('p.published_at', 'DESC')
             ->setMaxResults($num)
             ->setFirstResult($start)
@@ -34,6 +35,7 @@ class PostsRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.isBest = :val')
+            ->andWhere('p.published=1')
             ->setParameter('val', true)
             ->orderBy('p.id', 'ASC')
             ->setMaxResults($max)

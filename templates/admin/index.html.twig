@@ -1,12 +1,29 @@
 {% extends '/admin/base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}Dashboard | Admin Panel!{% endblock %}
 
 {% block body %}
 <div class="row">
-    <div class="col-xl-5 col-md-5 col-sm-1">
+    <div class="col-xl-6 col-md-6 col-sm-1">
         <div class="row">
+
             <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            Calendar
+                        </h3>
+                        <div id="calendar">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-6 col-sm-1">
+        <div class="row">
+            <div class="col-md-12 mb-4">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">
@@ -21,26 +38,17 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 mt-4">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title">
-                            Calendar
+                            Statistics
                         </h3>
+                        <canvas id="myChart" height="127"></canvas>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </div>
-    <div class="col-xl-7 col-md-7 col-sm-1">
-        <div class="card">
-            <div class="card-body">
-                <h3 class="card-title">
-                    Statistics
-                </h3>
-                <canvas id="myChart" height="120"></canvas>
-            </div>
         </div>
     </div>
 </div>
@@ -51,7 +59,21 @@
                 <h3 class="card-title">
                     Top 5 posts
                 </h3>
-                Tu będą top 5 postów
+                <div class="row mt-4">
+                    {% for bestPost in bestPosts %}
+                    <div class="col-md-12 mb-3">
+                        <div class="card bg-info text-white">
+                            <div class="card-body">{{ bestPost.title }} (ID: {{ bestPost.id }})</div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="col-md-12">
+                        <div class="card bg-info text-white">
+                            <div class="card-body">Brak</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
@@ -59,7 +81,21 @@
         <div class="card">
             <div class="card-body">
                 <h3 class="card-title">New come users</h3>
-                New come users here
+                <div class="row mt-4">
+                    {% for newUser in newUsers %}
+                        <div class="col-md-12 mb-3">
+                            <div class="card bg-info text-white">
+                                <div class="card-body">{{ newUser.username }} (ID: {{ newUser.id }})</div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-md-12">
+                            <div class="card bg-info text-white">
+                                <div class="card-body">Brak</div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
@@ -74,6 +110,15 @@
 {% block footer %}
     {{ parent() }}
     <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth'
+            });
+            calendar.render();
+        });
+
         var ctx = document.getElementById('myChart').getContext('2d');
 
         fetch("{{ path('admin_stats_ajax') }}")

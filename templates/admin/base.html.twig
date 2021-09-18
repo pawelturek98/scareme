@@ -8,6 +8,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.css" rel="stylesheet">
         {% block stylesheets %}
             {{ encore_entry_link_tags('admin') }}
         {% endblock %}
@@ -106,6 +107,8 @@
 
         {% block footer %}
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.9.0,npm/fullcalendar@5.9.0/locales-all.min.js"></script>
         {% endblock %}
     </body>
 </html>

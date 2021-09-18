@@ -47,17 +47,17 @@ class Posts
     private $short_description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $meta_name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $meta_keywords;
 
@@ -82,7 +82,7 @@ class Posts
     private $published_at;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $published;
 
@@ -219,7 +219,7 @@ class Posts
         return $this->url_key;
     }
 
-    public function setUrlKey(string $url_key): self
+    public function setUrlKey(?string $url_key): self
     {
         $this->url_key = $url_key;
 
@@ -320,6 +320,20 @@ class Posts
         return $this;
     }
 
+    public function generateUrlKey(string $title): self
+    {
+        $polish = ['ą', 'ę', 'ć', 'ź', 'ż', 'ł', 'ó', 'ś', 'ń'];
+        $latin = ['a', 'e', 'c', 'z', 'z', 'l', 'o', 's', 'n'];
+        $title = strtolower($title);
+        $url_key = str_replace([" "], ["_"], $title);
+        $url_key = str_replace($polish, $latin, $url_key);
+        $url_key = urlencode($url_key);
+
+        $this->url_key = $url_key;
+
+        return $this;
+    }
+
     private function getVotesCount(string $type): int
     {
         $votes = 0;
@@ -329,4 +343,5 @@ class Posts
 
         return $votes;
     }
+
 }

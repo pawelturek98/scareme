@@ -14,13 +14,19 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class CategoriesType extends AbstractType
 {
     private $_categoriesRepository;
+
+    public function __construct(CategoriesRepository $categoriesRepository)
+    {
+        $this->_categoriesRepository = $categoriesRepository;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('id_parent', ChoiceType::class, [
                 'choices' =>[
-                    0 => 'test'
-                ],
+                    "Brak" => 0
+                ] + $this->_categoriesRepository->getCategories(),
                 'attr' => [
                     'class' => 'form-control mb-3'
                 ]

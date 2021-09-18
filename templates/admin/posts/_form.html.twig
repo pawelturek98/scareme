@@ -1,11 +1,102 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <div class="form-group" style="text-align: right;">
-        <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+<div class="row">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Title and description</h4>
+                        <div class="form-group">
+                            {{ form_row(form.title) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.description) }}
+                        </div>
+                        <div class="mt-2">&nbsp;</div>
+                        <div class="form-group">
+                            {{ form_row(form.short_description) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">SEO</h4>
+                        <div class="form-group">
+                            {{ form_row(form.meta_name) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.meta_keywords) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_row(form.meta_description) }}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="col-md-4">
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group" style="text-align: center;">
+                        <button class="btn btn-primary" style="width: 100%">{{ button_label|default('Save') }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Published</h4>
+                    <div class="form-group">
+                        {{ form_row(form.published) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Category</h4>
+                    <div class="form-group">
+                        {{ form_row(form.category) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Image</h4>
+                    <div class="form-group">
+                        {{ form_row(form.imageFile) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Url Key</h4>
+                    <div class="form-group">
+                        {{ form_row(form.url_key) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace('posts[description]');
         CKEDITOR.replace('posts[short_description]');
+
+
     </script>
+
 {{ form_end(form) }}

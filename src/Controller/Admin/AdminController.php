@@ -2,7 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Repository\PostsRepository;
+use App\Repository\UserRepository;
 use App\Repository\VisitorsStatisticsRepository;
+use Doctrine\ORM\Mapping\OrderBy;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,10 +16,11 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin", name="admin")
      */
-    public function index(): Response
+    public function index(PostsRepository $postsRepository, UserRepository $userRepository): Response
     {
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+            'bestPosts' => $postsRepository->findFromToPosts(5),
+            'newUsers' => $userRepository->findBy([], ['id' => 'asc'], 5),
         ]);
     }
 
