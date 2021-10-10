@@ -7,41 +7,46 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="card-body">
-                    <h1>StaticPage index</h1>
+                    <h1>Static pages</h1>
+                    <table class="table table-bordered table-light text-center">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>Published</th>
+                            <th>Created at</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for static_page in static_pages %}
+                            <tr>
+                                <td>{{ static_page.id }}</td>
+                                <td>{{ static_page.title }}</td>
+                                <td>{{ static_page.published ? 'Yes' : 'No' }}</td>
+                                <td>{{ static_page.createdAt ? static_page.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>
+                                    <a href="{{ path('static_page_edit', {'id': static_page.id}) }}" class="btn btn-success">Edit</a>
+                                    <button
+                                            class="btn btn-danger delete-item"
+                                            type="button"
+                                            data-delete_message="Are you sure you want to delete this page?"
+                                            data-delete_url="{{ path('static_page_delete', {'id': static_page.id}) }}">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="12">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="text-right">
+                        <a href="{{ path('static_page_new') }}" class="btn btn-primary">Create new</a>
+                    </div>
                 </div>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Title</th>
-                        <th>Published</th>
-                        <th>Created_at</th>
-                        <th>Published_at</th>
-                        <th>actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for static_page in static_pages %}
-                        <tr>
-                            <td>{{ static_page.id }}</td>
-                            <td>{{ static_page.title }}</td>
-                            <td>{{ static_page.published ? 'Yes' : 'No' }}</td>
-                            <td>{{ static_page.createdAt ? static_page.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                            <td>{{ static_page.publishedAt ? static_page.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
-                            <td>
-                                <a href="{{ path('static_page_show', {'id': static_page.id}) }}">show</a>
-                                <a href="{{ path('static_page_edit', {'id': static_page.id}) }}">edit</a>
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="12">no records found</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-
-                <a href="{{ path('static_page_new') }}">Create new</a>
             </div>
         </div>
     </div>

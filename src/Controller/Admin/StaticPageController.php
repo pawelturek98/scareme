@@ -6,6 +6,7 @@ use App\Entity\StaticPage;
 use App\Form\StaticPageType;
 use App\Repository\StaticPageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -63,16 +64,6 @@ class StaticPageController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="static_page_show", methods={"GET"})
-     */
-    public function show(StaticPage $staticPage): Response
-    {
-        return $this->render('admin/static_page/show.html.twig', [
-            'static_page' => $staticPage,
-        ]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="static_page_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, StaticPage $staticPage): Response
@@ -95,14 +86,12 @@ class StaticPageController extends AbstractController
     /**
      * @Route("/{id}", name="static_page_delete", methods={"POST"})
      */
-    public function delete(Request $request, StaticPage $staticPage): Response
+    public function delete(Request $request, StaticPage $staticPage): JsonResponse
     {
-        if ($this->isCsrfTokenValid('delete'.$staticPage->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($staticPage);
-            $entityManager->flush();
-        }
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($staticPage);
+        $entityManager->flush();
 
-        return $this->redirectToRoute('admin_static_page_index');
+        return new JsonResponse(['status' => 'ok', 'url' => $this->generateUrl('admin_static_page_index')]);
     }
 }
