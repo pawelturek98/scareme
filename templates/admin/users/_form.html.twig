@@ -1,0 +1,29 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group">
+                    {{ form_label(form.username) }}
+                    {{ form_widget(form.username) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.plainPassword) }}
+                    {{ form_widget(form.plainPassword) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.role) }}
+                    {{ form_widget(form.role) }}
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

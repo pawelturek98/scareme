@@ -3,12 +3,19 @@
 {% block title %}Posts index{% endblock %}
 
 {% block body %}
+    {% if isCategoriesTableEmpty %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger">You haven't categories available. In order to add new post you must add new category!</div>
+            </div>
+        </div>
+    {% endif %}
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="card-body">
                     <h1>Posts list</h1>
-                    <table class="table">
+                    <table class="table table-bordered table-light text-center">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -38,13 +45,17 @@
                             </tr>
                         {% else %}
                             <tr>
-                                <td colspan="13">no records found</td>
+                                <td colspan="13">No posts found</td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                     <div class="text-right">
-                        <a href="{{ path('posts_new') }}" class="btn btn-primary">Create new</a>
+                        {% if not isCategoriesTableEmpty %}
+                            <a href="{{ path('posts_new') }}" class="btn btn-primary" >Create new</a>
+                        {% else %}
+                            <button disabled="disabled" class="btn btn-primary">Create new</button>
+                        {% endif %}
                     </div>
                 </div>
             </div>

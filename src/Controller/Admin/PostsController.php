@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Posts;
 use App\Form\PostsType;
+use App\Repository\CategoriesRepository;
 use App\Repository\PostsRepository;
 use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,10 +31,11 @@ class PostsController extends AbstractController
     /**
      * @Route("/", name="admin_posts_index", methods={"GET"})
      */
-    public function index(PostsRepository $postsRepository): Response
+    public function index(PostsRepository $postsRepository, CategoriesRepository $categoriesRepository): Response
     {
         return $this->render('admin/posts/index.html.twig', [
             'posts' => $postsRepository->findAll(),
+            'isCategoriesTableEmpty' => count($categoriesRepository->findAll()) < 1,
         ]);
     }
 

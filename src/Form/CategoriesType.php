@@ -29,12 +29,12 @@ class CategoriesType extends AbstractType
                 ] + $this->_categoriesRepository->getCategories(),
                 'attr' => [
                     'class' => 'form-control mb-3'
-                ]
+                ],
             ])
             ->add('name', TextType::class, [
                 'attr' => [
                     'class' => 'form-control mb-3'
-                ]
+                ],
             ])
         ;
     }
