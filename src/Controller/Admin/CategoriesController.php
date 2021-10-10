@@ -74,12 +74,12 @@ class CategoriesController extends AbstractController
     /**
      * @Route("/{id}/delete", name="categories_delete", methods={"POST"})
      */
-    public function delete(Request $request, Categories $category): JsonResponse
+    public function delete(Categories $category): JsonResponse
     {
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($category);
         $entityManager->flush();
 
-        return new JsonResponse(['status' => 'ok']);
+        return new JsonResponse(['status' => 'ok', 'url' => $this->generateUrl('admin_users_index')]);
     }
 }

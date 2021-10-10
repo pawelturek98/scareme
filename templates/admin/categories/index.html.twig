@@ -25,7 +25,13 @@
                                 <td>{{ category.name }}</td>
                                 <td>{{ category.idParent }}</td>
                                 <td>
-                                    <button class="btn btn-danger delete-item" type="button" data-delete_url="{{ path('categories_delete', {'id': category.id}) }}">Delete</button>
+                                    <button
+                                            class="btn btn-danger delete-item"
+                                            type="button"
+                                            data-delete_message="Are you sure you want to delete this category?"
+                                            data-delete_url="{{ path('categories_delete', {'id': category.id}) }}">
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         {% else %}
@@ -46,25 +52,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block footer %}
-    {{ parent() }}
-    <script>
-        Array.from(document.getElementsByClassName('delete-item')).forEach(function(item) {
-            item.addEventListener('click', function() {
-                if(!confirm("Are you sure you want to delete this category?")) {
-                    return false;
-                }
-
-                fetch(item.dataset.delete_url, {
-                    method: 'POST'
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                       window.location = '{{ path("admin_categories_index") }}';
-                    });
-            })
-        });
-    </script>
 {% endblock %}

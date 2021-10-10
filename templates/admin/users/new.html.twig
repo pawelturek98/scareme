@@ -3,15 +3,12 @@
 {% block body %}
     <div class="row">
         <div class="col-md-2 col-sm-2 col-xs-2 mb-3">
-            <a href="{{ path('admin_posts_index') }}" class="btn btn-dark">back to list</a>
-        </div>
-        <div class="col-md-10 col-md-10 col-xs-10">
-            <h2>Create new user</h2>
+            <a href="{{ path('admin_users_index') }}" class="btn btn-dark">back to list</a>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            {{ include('admin/users/_form.html.twig') }}
+            {{ include('admin/users/_form.html.twig', {"action": "Create new user"}) }}
         </div>
     </div>
 {% endblock %}

@@ -103,10 +103,10 @@ class PostsController extends AbstractController
                 $post->setImage($imageFileName);
             }
 
-            $post->setCreatedAt(new \DateTime('now'));
             if($form->get('published')) {
                 $post->setPublishedAt(new \DateTime('now'));
             }
+
             $post->generateUrlKey($post->getTitle());
             $this->getDoctrine()->getManager()->flush();
 

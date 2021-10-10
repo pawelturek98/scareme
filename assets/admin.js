@@ -12,3 +12,19 @@ import './styles/admin.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+Array.from(document.getElementsByClassName('delete-item')).forEach(function(item) {
+    item.addEventListener('click', function() {
+        if(!confirm(this.dataset.delete_message)) {
+            return false;
+        }
+
+        fetch(item.dataset.delete_url, {
+            method: 'POST'
+        })
+            .then(response => response.json())
+            .then(data => {
+                window.location = data.url;
+            });
+    })
+});
