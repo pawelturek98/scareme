@@ -2,8 +2,13 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\PageSettings;
+use App\Form\PageSettingsType;
+use App\Repository\PageSettingsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -14,10 +19,25 @@ class SettingsController extends AbstractController
     /**
      * @Route("/", name="admin_settings_index")
      */
-    public function index(): Response
+    public function index(Request $request, PageSettingsRepository $pageSettingsRepository): Response
     {
+        $settings = $pageSettingsRepository->find(1);
+
+        if($settings == null) {
+            $settings = new PageSettings();
+        }
+
+        $form = $this->createForm(PageSettingsType::class, $settings);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($settings);
+            $entityManager->flush();
+        }
+
         return $this->render('admin/settings/index.html.twig', [
-            'controller_name' => 'SettingsController',
+            'form' => $form->createView(),
         ]);
     }
 }

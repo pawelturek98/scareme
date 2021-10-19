@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}{% trans %}Home site{% endtrans %}{% endblock %}</title>
+        <title>{{ settings.getSettings.pageName }} | {% block title %}{% trans %}Home site{% endtrans %}{% endblock %}</title>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
@@ -87,13 +87,22 @@
                         {% trans %}Follow us{% endtrans %}
                     </h3>
                     <ul>
-                        <li><a href="">Facebook</a></li>
-                        <li><a href="">Twitter</a></li>
-                        <li><a href="">Instagram</a></li>
-                        <li><a href="">Discord</a></li>
+                        {% if settings.getSettings.socialFacebook %}
+                        <li><a href="{{ settings.getSettings.socialFacebook }}">Facebook</a></li>
+                        {% endif %}
+                        {% if settings.getSettings.socialTwitter %}
+                            <li><a href="{{ settings.getSettings.socialTwitter }}">Twitter</a></li>
+                        {% endif %}
+                        {% if settings.getSettings.socialInstagram %}
+                            <li><a href="{{ settings.getSettings.socialInstagram }}">Instagram</a></li>
+                        {% endif %}
+                        {% if settings.getSettings.socialDiscord %}
+                            <li><a href="{{ settings.getSettings.socialDiscord }}">Discord</a></li>
+                        {% endif %}
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
+                    {% if settings.getSettings.newsletterEnabled %}
                     <h3 class="footer__header">
                         {% trans %}Add to newsletter{% endtrans %}
                     </h3>
@@ -108,6 +117,7 @@
                             </div>
                         </div>
                     </form>
+                    {% endif %}
                 </div>
             </div>
             <div class="row">

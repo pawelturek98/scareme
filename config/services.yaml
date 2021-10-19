@@ -40,3 +40,6 @@ services:
 
     App\Service\VisitorStatistics:
         arguments:
+
+    App\Service\SiteSettings:
+        arguments:
