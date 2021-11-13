@@ -30,7 +30,7 @@ class ResponseListener
         $browser = $event->getRequest()->headers->get('User-Agent');
         $route = $event->getRequest()->getRequestUri();
 
-        if(strpos($route, '_') === false && strpos($route, 'admin') === false) {
+        if(strpos($route, '_') === false && strpos($route, 'admin') === false && strpos($route, 'favicon') === false) {
             $this->_visitorStatistics->addVisitor($client_ip, $browser, $route);
         }
     }

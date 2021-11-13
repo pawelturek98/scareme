@@ -1,20 +1,45 @@
-{% extends 'admin/base.html.twig' %}
+ {% extends 'admin/base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Contacts!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/pawel/programowanie/scary/src/Controller/ContactController.php'|file_link(0) }}">src/Controller/ContactController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/pawel/programowanie/scary/templates/contact/index.html.twig'|file_link(0) }}">templates/contact/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Contacts</h1>
+                    <table class="table table-bordered table-light text-center">
+                        <tr>
+                            <th>ID</th>
+                            <th>First name</th>
+                            <th>E-mail</th>
+                            <th>Title</th>
+                            <th>Created at</th>
+                            <th>Seen</th>
+                            <th>Action</th>
+                        </tr>
+                        {% for contact in contacts %}
+                            <tr>
+                                <td>{{ contact.id }}</td>
+                                <td>{{ contact.firstName }}</td>
+                                <td>{{ contact.email }}</td>
+                                <td>{{ contact.title }}</td>
+                                <td>{{ contact.createdAt|date('Y-m-d H:i:s') }}</td>
+                                <td>
+                                    {% if contact.seen %}
+                                        Already seen
+                                    {% else %}
+                                        New
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ path('contact_show', {'id': contact.id}) }}" class="btn btn-primary">Show</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

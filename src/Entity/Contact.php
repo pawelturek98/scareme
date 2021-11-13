@@ -42,6 +42,11 @@ class Contact
      */
     private $created_at;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $showed = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +108,18 @@ class Contact
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getSeen(): bool
+    {
+        return $this->showed;
+    }
+
+    public function setSeen(string $showed): self
+    {
+        $this->showed = $showed;
 
         return $this;
     }
