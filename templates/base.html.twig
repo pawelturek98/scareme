@@ -2,18 +2,16 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{{ settings.getSettings.pageName }} | {% block title %}{% trans %}Home site{% endtrans %}{% endblock %}</title>
+        <title>{{ settings.getSettings.pageName }} | {% block title %}{{ 'site.title' }}{% endblock %}</title>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-        <meta name="description" content="{% block seo_description %}Page description{% endblock %}">
-        <meta name="keywords" content="{% block seo_keywords %}Site keywords{% endblock %}">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+        <meta name="description" content="{% block seo_description %}{% endblock %}">
+        <meta name="keywords" content="{% block seo_keywords %}{% endblock %}">
+
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
@@ -39,10 +37,10 @@
                         </div>
                         <div class="col-xl-4 header-top__item">
                             {% if app.user %}
-                                <p>Witaj {{ app.user.username }} | <a href="{{ path('app_logout') }}">{% trans %}Log out{% endtrans %}</a></p>
+                                <p>{{ 'site.welcome' | trans }} {{ app.user.username }} | <a href="{{ path('app_logout') }}">{{ 'site.logout' | trans }}</a></p>
                             {% else %}
-                                <a href="{{ path('app_login') }}" class="btn btn-primary">{% trans %}Login{% endtrans %}</a>
-                                <a href="{{ path('app_register') }}" class="btn btn-secondary">{% trans %}Register{% endtrans %}</a>
+                                <a href="{{ path('app_login') }}" class="btn btn-primary">{{ 'site.login' | trans }}</a>
+                                <a href="{{ path('app_register') }}" class="btn btn-secondary">{{ 'site.register' | trans }}</a>
                             {% endif %}
                         </div>
                     </div>
@@ -54,10 +52,10 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                         <li class="nav-item {% if app.request.attributes.get('_route') == 'app_home' %} active {% endif %}">
-                            <a class="nav-link" href="/">{% trans %}Home{% endtrans %}</a>
+                            <a class="nav-link" href="/">{{ 'navigation.home' | trans }}</a>
                         </li>
                         <li class="nav-item {% if app.request.attributes.get('_route') == 'articles' or app.request.attributes.get('_route') == 'article' %} active {% endif %}">
-                            <a class="nav-link" href="/articles">{% trans %}Articles{% endtrans %}</a>
+                            <a class="nav-link" href="/articles">{{ 'navigation.articles' | trans }}</a>
                         </li>
                         </ul>
                     </div>
@@ -72,19 +70,19 @@
             <div class="row">
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <h3 class="footer__header">
-                        {% trans %}About us{% endtrans %}
+                        {{ 'site.about_us' | trans }}
                     </h3>
                     <ul>
-                        <li><a href="/page/gdpr">{% trans %}GDPR{% endtrans %}</a></li>
-                        <li><a href="/page/cookie-policy">{% trans %}Cookie policy{% endtrans %}</a></li>
-                        <li><a href="/page/terms-and-conditions">{% trans %}Terms and conditions{% endtrans %}</a></li>
-                        <li><a href="/page/about-site">{% trans %}About site{% endtrans %}</a></li>
-                        <li><a href="/contact">{% trans %}Contact with developer{% endtrans %}</a></li>
+                        <li><a href="/page/gdpr">{{ 'site.gdpr' | trans }}</a></li>
+                        <li><a href="/page/cookie-policy">{{ 'site.cookie_policy' | trans }}</a></li>
+                        <li><a href="/page/terms-and-conditions">{{ 'site.terms_and_conditions' | trans }}</a></li>
+                        <li><a href="/page/about-site">{{ 'site.about_site' | trans }}</a></li>
+                        <li><a href="/contact">{{ 'site.contact_with_developer' | trans }}</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     <h3 class="footer__header">
-                        {% trans %}Follow us{% endtrans %}
+                        {{ 'site.follow_us' | trans }}
                     </h3>
                     <ul>
                         {% if settings.getSettings.socialFacebook %}
@@ -104,16 +102,16 @@
                 <div class="col-md-4 col-sm-12 col-xs-12">
                     {% if settings.getSettings.newsletterEnabled %}
                     <h3 class="footer__header">
-                        {% trans %}Add to newsletter{% endtrans %}
+                        {{ 'site.add_to_newsletter' | trans }}
                     </h3>
                     <form id="newsletter_form" action="/newsletter" method="post">
                         <div class="row">
                             <div class="col-md-8 form-group" style="padding-right: 0; margin-right: 0;">
-                                <label for="email mb-2">{% trans %}E-mail address{% endtrans %}</label>
+                                <label for="email mb-2">{{ 'site.email_address' | trans }}</label>
                                 <input type="text" name="email" id="email" class="form-control" />
                             </div>
                             <div class="col-md-4 form-group pt-4">
-                                <button type="submit" class="btn btn-primary">{% trans %}Save{% endtrans %}</button>
+                                <button type="submit" class="btn btn-primary">{{ 'form.button.save' | trans }}</button>
                             </div>
                         </div>
                     </form>
@@ -126,6 +124,33 @@
                 </div>
             </div>
         </footer>
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+            <script>
+                window.cookieconsent.initialise({
+                    "palette": {
+                        "popup": {
+                            "background": "#2c2c2c",
+                            "text": "#9a9c9e"
+                        },
+                        "button": {
+                            "background": "#8c0002",
+                            "text": "#ffffff"
+                        }
+                    },
+                    "theme": "edgeless",
+                    "position": "bottom-left",
+                    "content": {
+                        "message": "Ta strona korzysta z plików cookie aby zapewnić najlepszą obsługę na naszej stronie.",
+                        "dismiss": "W porządku!",
+                        "link": "Więcej",
+                        "href": "/privacy-policy",
+                    }
+                });
+            </script>
         {% endblock %}
     </body>
 </html>

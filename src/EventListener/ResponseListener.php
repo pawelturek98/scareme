@@ -1,7 +1,7 @@
 <?php
 namespace App\EventListener;
 
-use App\Service\VisitorStatistics;
+use App\Service\Page\VisitorStatistics;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 class ResponseListener
@@ -24,14 +24,21 @@ class ResponseListener
     /**
      * @param ResponseEvent $event
      */
-    public function onKernelResponse(ResponseEvent $event)
+    public function onKernelResponse(ResponseEvent $event): void
     {
-        $client_ip = $event->getRequest()->getClientIp();
+        $clientIp = $event->getRequest()->getClientIp();
         $browser = $event->getRequest()->headers->get('User-Agent');
         $route = $event->getRequest()->getRequestUri();
 
-        if(strpos($route, '_') === false && strpos($route, 'admin') === false && strpos($route, 'favicon') === false) {
-            $this->_visitorStatistics->addVisitor($client_ip, $browser, $route);
+        if($this->isCorrectRoute($route)) {
+            $this->_visitorStatistics->addVisitor($clientIp, $browser, $route);
         }
+    }
+
+    private function isCorrectRoute(string $route): bool
+    {
+        return strpos($route, '_') === false
+            && strpos($route, 'admin') === false
+            && strpos($route, 'favicon') === false;
     }
 }

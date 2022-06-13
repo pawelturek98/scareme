@@ -1,6 +1,31 @@
-Home: Strona domowa
-Articles: Artykuły
-Log out: Wyloguj
+navigation:
+  articles: Artykuły
+  home: Strona domowa
+site:
+  logout: Wyloguj
+  latest_posts: Najnowsze posty
+  most_popular_post: Najpopularniejszy post
+  follow_us: Śledź nas na
+  about_us: O nas
+  gdpr: RODO
+  cookie_policy: Polityka ciasteczek
+  terms_and_conditions: Warunki użytkowania
+  about_site: O stronie
+  contact_with_developer: Skontaktuj się z twórcą
+  add_to_newsletter: Dodaj do newslettera
+  email_address: Adres e-mail
+  login: Zaloguj
+  register: Rejestracja
+  sign_in: Proszę się zalogować
+  welcome: Witaj
+user:
+  username: Nazwa użytkownika
+  password: Hasło
+form:
+  button:
+    save: Zapisz
+    signin: Zaloguj
+    register: Zarejestruj
 Latest posts: Najnowsze posty
 Most popular post: Najpopularniejszy post
 Follow us: Śledź nas na
